@@ -28,7 +28,8 @@ const WebpackOnBuildPlugin = require('on-build-webpack');
 
 const nodeModulesDir = path.resolve(__dirname, '../node_modules');
 
-const THIS_APP_ID = 'openmrs-addonmanager';
+const THIS_APP_ID = 'addonmanager';
+const THIS_APP_VERSION = '1.0.0';
 
 let plugins = [];
 const nodeModules = {};
@@ -84,7 +85,7 @@ if (env === 'production') {
   plugins.push(new WebpackOnBuildPlugin(function(stats){
     //create zip file
     let archiver = require('archiver');
-    let output = fs.createWriteStream(THIS_APP_ID+'.zip');
+    let output = fs.createWriteStream(THIS_APP_ID + '-' + THIS_APP_VERSION + '.zip');
     let archive = archiver('zip');
 
     output.on('close', function () {
